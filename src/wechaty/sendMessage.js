@@ -23,6 +23,8 @@ export async function defaultMessage(msg, bot) {
   const isBotSelf = botName === remarkName || botName === name // 是否是机器人自己
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if (isText && !isBotSelf) {
+    if (Date.now() - 1e3 * msg.payload.timestamp > 3000) return
+    if (!content.startsWith('? ') && !content.startsWith('？ ') && !content.startsWith('> ')) return
     try {
       // 区分群聊和私聊
       if (isRoom && room) {
